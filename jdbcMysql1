@@ -1,0 +1,35 @@
+/*
+ Date : 22-2-2017
+ this program describes how to connect java program with mysql and select and insert query.
+*/
+
+package database;
+
+import java.sql.*;
+
+public class JdbcConImpl {
+
+	public static void main(String args[]) {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/login","root","pword");
+			Statement st = con.createStatement();
+			st.executeUpdate("insert into login1 values('mohit',42)");
+			System.out.println("Complete");
+			
+			ResultSet rs = st.executeQuery("select * from login1");  
+			while(rs.next())  
+			System.out.println(rs.getString(1)+"  "+rs.getString(2));  
+			con.close();  
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	
+}
